@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/signup.css')}}">
+    <title>Sign Up</title>
+    <script>
+    function Validate() {
+        var password = document.getElementsByName("password")[0].value;
+        var confirmPassword = document.getElementsByName("re-password")[0].value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+
+    </script>
+    {% endblock %}
+</head>
+<body onload="mypop()">
+    {% block body %}
+    <script>
+        function mypop()
+        {
+            if("{{ error }}"=="T")
+            {
+              alert("Signup error")
+            }
+        }
+    </script>
+    <div id="outer">
+
+        <div id="signup">
+            <div class="card" style="width: 600px;">
+                <div class="card-body">
+            <form id="form" action="{{ url_for('adduser') }}" method="POST" autocomplete="off">
+                <div class="msg">{{ msg }}</div>
+                <label>User Name:</label><br>
+                <input type="text" 	name="username" placeholder="Enter the name"><br>
+                <label>Email:</label><br>
+                <input type="email" name="mail" placeholder="Enter the email id"><br>
+                <label>Phone no:</label><br>
+                <input type="tele" 	name="mobile" placeholder="Enter the mobile no"><br>
+                <label>Password:</label><br>
+                <input  type="password" name="password" placeholder="enter password"><br>
+                <label>Retype Password:</label>
+                <input  type="password" name="re-password" placeholder="retype the password"><br>
+                <input type="submit" id="sign" onclick="return Validate()" value="SignUp"><br><br>
+
+                <p>Already a user? <a href="{{url_for('login')}}">Log in</a></p>
+            </form>
+        </div></div>
+        </div>
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script>
+        
+    </script>
+    {% endblock %}
+</body>
+</html>
