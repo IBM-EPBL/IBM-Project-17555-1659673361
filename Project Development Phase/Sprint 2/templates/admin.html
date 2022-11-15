@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <title>Admin</title>
+    <style>
+       #response
+        {
+            margin-top: 50px;
+            text-align:center;
+            margin-left: 550px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+            font-size: large;
+            margin-top: 10px;
+            margin-bottom: 10px;
+      }
+      #response1
+        {
+            margin-top: 50px;
+            text-align:center;
+            margin-left: 450px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+            font-size: large;
+            margin-top: 10px;
+            margin-bottom: 10px;
+      }
+      #table1,th,td,tr
+      {
+         table-layout: fixed;
+         border:2px solid black;
+         padding: 10px;
+      }
+      a{
+        text-decoration: none;
+        color: black;
+       }
+    li{
+        display: inline;
+        margin:20px;
+       
+    }
+    ul{
+        margin-top: 60px;
+    }
+    #navbar
+    {
+        text-align: center;
+        border:5px solid white;
+        background-color: aliceblue;
+        width: 100%;
+        height:200px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+        font-weight: bold;
+        
+    }
+    #log
+        {
+            border: none;
+            background-color: transparent;
+            width: 50px;
+            align: right;
+            float: right;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+   <nav>
+      <div id="navbar">
+         <div id="log"><a class="nav-link" href="{{url_for('logout')}}"><i class="fa-solid fa-right-from-bracket" style="font-size:30px;color:black"></i></a></div>
+          <ul>
+              <li><a href="url_for('hello')">Home</a></li>
+          </ul>
+      </div>
+  </nav>
+  <div id="response">
+   <table border = 1>
+      <thead>
+         <td>CategoryID</td>
+         <td>CategoryName</td>
+         <td>Edit</td>
+         <td>Delete</td>
+      </thead>
+      
+      {% for row in category %}
+         <tr>
+            <td>{{row["CATEGORYID"]}}</td>
+            <td>{{row["CATEGORYNAME"]}}</td>	
+            <td><button><a href="/edit/{{'CATEGORY'}}/{{row['CATEGORYID']}}">Edit</a></button></td>
+            <td><button><a href="/delete/{{'CATEGORY'}}/{{row['CATEGORYID']}}">Delete</a></button></td>
+         </tr>
+      {% endfor %}
+   </table>
+  </div>
+  <div id="response1">
+   <table border = 1>
+      <thead>
+         <td>ProductID</td>
+         <td>ProductName</td>
+         <td>CategoryID</td>
+         <td>Unit</td>
+         <td>Price</td>
+         <td>Edit</td>
+         <td>Delete</td>
+      </thead>
+      
+      {% for row in prods %}
+         <tr>
+            <td>{{row["PRODUCTID"]}}</td>
+            <td>{{row["PRODUCTNAME"]}}</td>	
+            <td>{{row["CATEGORYID"]}}</td>	
+            <td>{{row["UNIT"]}}</td>	
+            <td>{{row["PRICE"]}}</td>	
+            <td><button><a href="/edit/{{'PRODUCT'}}/{{row['PRODUCTID']}}">Edit</a></button></td>
+            <td><button><a href="/delete/{{'PRODUCT'}}/{{row['PRODUCTID']}}">Delete</a></button></td>
+         </tr>
+      {% endfor %}
+   </table>
+  </div>
+   
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+ 
+</body>
+</html>
