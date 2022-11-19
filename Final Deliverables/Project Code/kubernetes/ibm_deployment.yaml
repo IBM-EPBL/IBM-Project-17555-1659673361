@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-ibm
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-ibm
+  template:
+    metadata:
+      labels:
+        app: flask-ibm
+
+    spec:
+      containers:
+        - name: flask-ibm-container
+          image: jp.icr.io/flask-with-ibm/flask_ibm_app
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+              protocol: TCP

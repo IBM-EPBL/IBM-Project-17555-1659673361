@@ -1,0 +1,4 @@
+ibm_db
+flask
+flask_sqlalchemy
+markupsafe
